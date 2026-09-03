@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Homelab on Ashley Collinge</title>
+    <link>http://localhost:1313/tags/homelab/</link>
+    <description>Recent content in Homelab on Ashley Collinge</description>
+    <generator>Hugo</generator>
+    <language>en-gb</language>
+    <lastBuildDate>Sat, 10 Jan 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/homelab/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Example First Post</title>
+      <link>http://localhost:1313/post/example-first-post/</link>
+      <pubDate>Sat, 10 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/post/example-first-post/</guid>
+      <description>&lt;p&gt;This is placeholder content for a blog post. Swap this out with your real&#xA;writing when you migrate content across from the live site.&lt;/p&gt;&#xA;&lt;p&gt;You can use normal Markdown here: &lt;strong&gt;bold&lt;/strong&gt;, &lt;em&gt;italic&lt;/em&gt;, lists, code blocks,&#xA;and so on.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Example Second Post</title>
+      <link>http://localhost:1313/post/example-second-post/</link>
+      <pubDate>Sun, 02 Nov 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/post/example-second-post/</guid>
+      <description>&lt;p&gt;Another placeholder post. This one is dated earlier than the first, so you&#xA;can check that the post list on &lt;code&gt;/post/&lt;/code&gt; and the &amp;ldquo;Recent&amp;rdquo; section on the&#xA;homepage sort correctly by date.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

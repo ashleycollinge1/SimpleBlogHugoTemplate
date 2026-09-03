@@ -1,0 +1,30 @@
+{{ define "main" }}
+<h1>{{ .Title }}</h1>
+{{ with .Content }}<div class="content">{{ . }}</div>{{ end }}
+
+<div class="photo-grid">
+  {{ range .Pages.ByDate.Reverse }}
+    {{ $photoTitle := .Title }}
+    {{ $photoLink := .RelPermalink }}
+    {{ $img := "" }}
+    {{ with .Resources.ByType "image" }}
+      {{ with index . 0 }}{{ $img = . }}{{ end }}
+    {{ end }}
+
+    <a class="photo-grid__item" href="{{ $photoLink }}">
+      {{ with $img }}
+        {{ $thumb := .Fit "600x600 q75" }}
+        {{ $full := .Fit "1800x1800 q80" }}
+        <img
+          src="{{ $thumb.RelPermalink }}"
+          data-full="{{ $full.RelPermalink }}"
+          alt="{{ $photoTitle }}"
+          loading="lazy"
+          width="{{ $thumb.Width }}"
+          height="{{ $thumb.Height }}">
+      {{ end }}
+      <span class="photo-grid__caption">{{ $photoTitle }}</span>
+    </a>
+  {{ end }}
+</div>
+{{ end }}

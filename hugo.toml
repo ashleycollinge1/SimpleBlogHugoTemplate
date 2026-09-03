@@ -1,0 +1,74 @@
+baseURL = "https://example.com/"
+locale = "en-gb"
+title = "Ashley Collinge"
+enableRobotsTXT = true
+
+# Needed so Hugo actually reads EXIF data (Camera/ISO/etc.) off real
+# photos later on. Without this, only a default subset of fields
+# is decoded.
+[imaging]
+  [imaging.exif]
+    includeFields = ".*"
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+
+[params]
+  description = "CV, photos and notes."
+  # Short bio shown under the profile photo on the homepage.
+  tagline = "Keen hiker, camper, and amateur photographer."
+  profileImage = "img/profile.webp"
+
+  # Each entry: name (used for the accessible label), username (the
+  # visible handle/text shown next to the icon), url, and icon (a key
+  # looked up in layouts/partials/icon.html -- unrecognised keys fall
+  # back to a generic link icon, so adding a new entry never breaks
+  # the page even before a matching glyph exists).
+  [[params.social]]
+    name     = "Email"
+    username = "you@example.com"
+    url      = "mailto:you@example.com"
+    icon     = "email"
+  [[params.social]]
+    name     = "LinkedIn"
+    username = "example"
+    url      = "https://linkedin.com/in/example"
+    icon     = "linkedin"
+  [[params.social]]
+    name     = "GitHub"
+    username = "example"
+    url      = "https://github.com/example"
+    icon     = "github"
+  [[params.social]]
+    name     = "Mastodon"
+    username = "@example@example.social"
+    url      = "https://example.social/@example"
+    icon     = "mastodon"
+  [[params.social]]
+    name     = "PGP"
+    username = "AAAA BBBB CCCC DDDD"
+    url      = "/public/publickey.txt"
+    icon     = "pgp"
+
+[[menu.main]]
+  name   = "Home"
+  url    = "/"
+  weight = 1
+[[menu.main]]
+  name   = "Posts"
+  url    = "/post/"
+  weight = 2
+[[menu.main]]
+  name   = "Photos"
+  url    = "/photo/"
+  weight = 3
+[[menu.main]]
+  name   = "Notes"
+  url    = "/note/"
+  weight = 4
+[[menu.main]]
+  name   = "Tags"
+  url    = "/tags/"
+  weight = 5

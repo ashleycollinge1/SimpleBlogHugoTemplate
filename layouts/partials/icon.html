@@ -1,0 +1,12 @@
+{{- $key := . -}}
+{{- $icons := dict
+  "email" `<rect x="3" y="5" width="18" height="14" rx="1"/><path d="M3 6l9 7 9-7"/>`
+  "linkedin" `<circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/>`
+  "github" `<path d="M8 6L2 12l6 6M16 6l6 6-6 6"/>`
+  "mastodon" `<path d="M4 4h16v11H8l-4 4V4z"/>`
+  "pgp" `<circle cx="8" cy="16" r="3.2"/><path d="M10.2 13.8L19 5h2M19 5v2M19 5l-4 4"/>`
+-}}
+{{- $default := `<path d="M9 15l6-6M10 6l1-1a4 4 0 015.7 5.7l-1 1M14 18l-1 1a4 4 0 01-5.7-5.7l1-1"/>` -}}
+{{- $paths := $default -}}
+{{- with index $icons $key -}}{{ $paths = . }}{{- end -}}
+<svg class="contact-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">{{ $paths | safeHTML }}</svg>

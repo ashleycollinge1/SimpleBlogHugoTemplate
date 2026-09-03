@@ -1,0 +1,65 @@
+{{ define "main" }}
+<article class="photo-detail">
+  <h1>{{ .Title }}</h1>
+
+  {{ $page := . }}
+  {{ $img := "" }}
+  {{ with .Resources.ByType "image" }}
+    {{ with index . 0 }}{{ $img = . }}{{ end }}
+  {{ end }}
+
+  {{ with $img }}
+    {{ $large := .Fit "1800x1800 q85" }}
+    <img class="photo-detail__image"
+      src="{{ $large.RelPermalink }}"
+      alt="{{ $page.Title }}"
+      width="{{ $large.Width }}"
+      height="{{ $large.Height }}">
+
+    {{ $meta := "" }}
+    {{ if reflect.IsImageResourceWithMeta $img }}{{ $meta = $img.Meta }}{{ end }}
+    {{ $exif := "" }}
+    {{ with $meta }}{{ $exif = .Exif }}{{ end }}
+
+    <dl class="exif">
+      {{ if $exif }}
+        {{ with $exif.Model }}<dt>Camera</dt><dd>{{ . }}</dd>{{ end }}
+        {{ with $meta.Date }}<dt>Taken</dt><dd>{{ .Format "Mon, 02 Jan 2006" }}</dd>{{ end }}
+        <dt>Resolution</dt><dd>{{ $img.Width }} x {{ $img.Height }}</dd>
+        {{ with $exif.ExposureTime }}<dt>Exposure Time</dt><dd>{{ . }}s</dd>{{ end }}
+        {{ $focal := "" }}
+        {{ with $exif.FocalLength }}{{ $focal = . }}{{ else }}{{ with $exif.FocalLengthIn35mmFormat }}{{ $focal = . }}{{ end }}{{ end }}
+        {{ with $focal }}<dt>Focal Length</dt><dd>{{ . }}mm</dd>{{ end }}
+        {{ with $exif.FNumber }}
+          {{ $parts := split . "/" }}
+          <dt>F/stop</dt>
+          {{ if eq (len $parts) 2 }}
+            <dd>f/{{ div (float (index $parts 0)) (float (index $parts 1)) }}</dd>
+          {{ else }}
+            <dd>f/{{ . }}</dd>
+          {{ end }}
+        {{ end }}
+        {{ with $exif.ISO }}<dt>ISO</dt><dd>{{ . }}</dd>{{ end }}
+      {{ else }}
+        {{/* No EXIF on this image -- fall back to manual front matter fields. */}}
+        {{ with $page.Params.camera }}<dt>Camera</dt><dd>{{ . }}</dd>{{ end }}
+        {{ with $page.Params.resolution }}<dt>Resolution</dt><dd>{{ . }}</dd>{{ end }}
+        {{ with $page.Params.exposure }}<dt>Exposure Time</dt><dd>{{ . }}</dd>{{ end }}
+        {{ with $page.Params.focal_length }}<dt>Focal Length</dt><dd>{{ . }}</dd>{{ end }}
+        {{ with $page.Params.fstop }}<dt>F/stop</dt><dd>{{ . }}</dd>{{ end }}
+        {{ with $page.Params.iso }}<dt>ISO</dt><dd>{{ . }}</dd>{{ end }}
+      {{ end }}
+    </dl>
+  {{ end }}
+
+  {{ .Content }}
+
+  {{ with .GetTerms "tags" }}
+    <ul class="tag-pills">
+      {{ range . }}<li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>{{ end }}
+    </ul>
+  {{ end }}
+
+  <p><a href="{{ "/photo/" | relLangURL }}">&larr; Back to photos</a></p>
+</article>
+{{ end }}

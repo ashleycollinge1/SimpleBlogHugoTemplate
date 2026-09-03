@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+		<title>Cloud on Ashley Collinge</title>
+		<link>http://localhost:1313/tags/cloud/</link>
+		<description>Recent content in Cloud on Ashley Collinge</description>
+		<generator>Hugo</generator>
+		<language>en-gb</language>
+		
+		
+		
+		
+			<lastBuildDate>Sun, 02 Nov 2025 00:00:00 +0000</lastBuildDate>
+		
+			<atom:link href="http://localhost:1313/tags/cloud/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>Example Second Post</title>
+				<link>http://localhost:1313/post/example-second-post/</link>
+				<pubDate>Sun, 02 Nov 2025 00:00:00 +0000</pubDate>
+				<guid>http://localhost:1313/post/example-second-post/</guid>
+				<description>&lt;p&gt;Another placeholder post. This one is dated earlier than the first, so you&#xA;can check that the post list on &lt;code&gt;/post/&lt;/code&gt; and the &amp;ldquo;Recent&amp;rdquo; section on the&#xA;homepage sort correctly by date.&lt;/p&gt;</description>
+			</item>
+	</channel>
+</rss>

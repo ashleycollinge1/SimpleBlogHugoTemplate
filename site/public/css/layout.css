@@ -1,0 +1,156 @@
+/* ---------- Site header / nav ---------- */
+
+.site-header {
+  background: var(--color-bg);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.site-header__bar {
+  max-width: var(--container-width);
+  margin-inline: auto;
+  padding-inline: var(--side-padding);
+  padding-block: var(--space-3);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.site-header__title {
+  font-weight: 700;
+  font-size: 1.15rem;
+  color: var(--color-heading);
+  text-decoration: none;
+}
+
+.site-nav__toggle {
+  display: none;
+}
+
+.site-nav__list {
+  list-style: none;
+  display: flex;
+  gap: var(--space-1);
+  margin: 0;
+  padding: 0;
+}
+
+/* Nav items pick up a solid left bar on hover/focus and on the
+   current page -- no background or colour change, matching the
+   original site's hover treatment. */
+.site-nav__list a {
+  display: block;
+  color: var(--color-text);
+  font-weight: 500;
+  padding: var(--space-1) var(--space-3);
+  border-left: var(--bar-width) solid transparent;
+  transition: border-color 0.15s ease;
+}
+
+.site-nav__list a:hover,
+.site-nav__list a:focus,
+.site-nav__list a[aria-current="page"] {
+  border-left-color: var(--color-heading);
+}
+
+/* Collapse the nav into a toggleable menu below a certain width, so
+   it never has to squeeze onto the same line as a long title. */
+@media (max-width: 40rem) {
+  .site-nav__toggle {
+    display: inline-flex;
+    align-items: center;
+    background: none;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    padding: var(--space-1) var(--space-3);
+    font: inherit;
+    color: var(--color-text);
+    cursor: pointer;
+  }
+
+  .site-nav__list {
+    flex-direction: column;
+    gap: var(--space-1);
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--color-bg);
+    padding: var(--space-3) var(--side-padding);
+    display: none;
+  }
+
+  .site-nav[data-open="true"] .site-nav__list {
+    display: flex;
+  }
+
+  .site-header__bar {
+    position: relative;
+  }
+}
+
+/* ---------- Homepage: profile card + bio content ---------- */
+
+.home-layout {
+  display: grid;
+  gap: var(--space-5);
+  grid-template-columns: 1fr;
+  align-items: start;
+}
+
+.profile-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-3);
+}
+
+.profile-card__photo {
+  width: 100%;
+  max-width: 9rem;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: var(--radius);
+  margin-inline: auto;
+}
+
+.profile-card__tagline {
+  margin: 0;
+  color: var(--color-muted);
+  font-size: 0.95rem;
+}
+
+.profile-card__contacts {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  width: 100%;
+}
+
+.profile-card__contacts a {
+  font-weight: 500;
+}
+
+/* Desktop: photo/contact card becomes a fixed-width sidebar,
+   bio content takes the remaining space. This is the part that
+   was missing before -- on narrow screens the single-column
+   layout above already looks right. */
+@media (min-width: 55rem) {
+  .home-layout {
+    grid-template-columns: 16rem minmax(0, 1fr);
+  }
+
+  .profile-card {
+    position: sticky;
+    top: calc(var(--space-3) * 2 + 2.5rem); /* clears the sticky site header */
+  }
+
+  .profile-card__photo {
+    max-width: 100%;
+  }
+}

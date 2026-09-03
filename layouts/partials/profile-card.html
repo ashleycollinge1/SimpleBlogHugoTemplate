@@ -1,0 +1,22 @@
+<aside class="profile-card">
+  {{ with .Site.Params.profileImage }}
+    <img class="profile-card__photo" src="{{ . | relURL }}" alt="Photo of {{ $.Site.Title }}" width="240" height="240">
+  {{ end }}
+
+  {{ with .Site.Params.tagline }}
+    <p class="profile-card__tagline">{{ . }}</p>
+  {{ end }}
+
+  {{ with .Site.Params.social }}
+    <ul class="profile-card__contacts">
+      {{ range . }}
+        <li>
+          <a href="{{ .url }}" aria-label="{{ .name }}">
+            {{ partial "icon.html" .icon }}
+            <span>{{ .username | default .name }}</span>
+          </a>
+        </li>
+      {{ end }}
+    </ul>
+  {{ end }}
+</aside>
